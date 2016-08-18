@@ -258,7 +258,7 @@ class mavfile(object):
             self.mav_count += 1
         
         self.timestamp = msg._timestamp
-        if type == 'HEARTBEAT' and msg.get_srcComponent() != mavlink.MAV_COMP_ID_GIMBAL:
+        if type == 'HEARTBEAT' and msg.get_srcComponent() != mavlink.MAV_COMP_ID_GIMBAL and msg.type != mavlink.MAV_TYPE_MONITOR:
             self.target_system = msg.get_srcSystem()
             self.target_component = msg.get_srcComponent()
             if float(mavlink.WIRE_PROTOCOL_VERSION) >= 1 and msg.type != mavlink.MAV_TYPE_GCS:
@@ -1454,7 +1454,28 @@ mode_mapping_px4 = {
     2 : 'EASY',
     3 : 'AUTO'
     }
-
+    
+mode_mapping_sub = {
+    0 : 'STABILIZE',
+    1 : 'ACRO',
+    2 : 'ALT_HOLD',
+    3 : 'AUTO',
+    4 : 'GUIDED',
+    5 : 'LOITER',
+    6 : 'RTL',
+    7 : 'CIRCLE',
+    8 : 'POSITION',
+    9 : 'LAND',
+    10 : 'OF_LOITER',
+    11 : 'DRIFT',
+    13 : 'SPORT',
+    14 : 'FLIP',
+    15 : 'AUTOTUNE',
+    16 : 'POSHOLD',
+    17 : 'BRAKE',
+    18 : 'THROW',
+    19 : 'MANUAL'
+    }
 
 def mode_mapping_byname(mav_type):
     '''return dictionary mapping mode names to numbers, or None if unknown'''
