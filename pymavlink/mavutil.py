@@ -506,6 +506,8 @@ class mavfile(object):
             map = mode_mapping_rover
         if mav_type == mavlink.MAV_TYPE_ANTENNA_TRACKER:
             map = mode_mapping_tracker
+        if mav_type == mavlink.MAV_TYPE_SUBMARINE:
+            map = mode_mapping_sub
         if map is None:
             return None
         inv_map = dict((a, b) for (b, a) in list(map.items()))
