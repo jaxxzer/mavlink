@@ -489,7 +489,8 @@ class mavfile(object):
 
     def mode_mapping(self):
         '''return dictionary mapping mode names to numbers, or None if unknown'''
-        mav_type = self.field('HEARTBEAT', 'type', self.mav_type)
+        # mav_type = self.field('HEARTBEAT', 'type', self.mav_type)
+        mav_type = self.mav_type
         if mav_type is None:
             return None
         map = None
